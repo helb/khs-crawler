@@ -50,7 +50,8 @@ class web:
           px = cropped_img.getpixel((x, y))
           if px == gray:
             cropped_img.putpixel((x, y), white)
-      val = int(image_to_string(cropped_img))
+      cropped_img = cropped_img.resize([int(2 * s) for s in cropped_img.size], Image.NEAREST)
+      val = int(image_to_string(cropped_img, config='digits'))
       results.append(
         {'okres': okresy[index], 'kraj': self.kraj, 'hodnota': val})
     return results
